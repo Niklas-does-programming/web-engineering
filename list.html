@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Princess+Sofia" rel="stylesheet" type="text/css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+
+    <title>Meine Aufgaben</title>
+
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg bg-success navbar-dark">
+
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/#start}" >Aufgabenverwaltung</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#ueber-uns">Über uns</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#impressum">Impressum</a></li>
+
+
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+
+
+
+
+
+<!-- content -->
+<main id="main">
+
+    <section id="space" class="space-section"></section>
+    <section id="login">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meine Aufgaben</h2>
+                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            </div>
+            <div>
+
+
+
+                <div class="container">
+
+                    <div style="margin-bottom: 5px;">
+                        <a th:href="@{/tasks/create}" class="btn btn-success" role="button">+ Aufgabe hinzufügen</a>
+                        <a th:href="@{/tasks}" class="btn btn-success btn-sm" role="button">Alle Aufgaben</a>
+                        <a th:href="@{/tasks/search?completed=false}" class="btn btn-success btn-sm" role="button">Nur offene Aufgaben</a>
+                        <a th:href="@{/tasks/search?completed=true}" class="btn btn-success btn-sm" role="button">Erledigte Aufgaben</a>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titel</th>
+                            <th>Bechreibung</th>
+                            <th>Erstellungsdatum</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="task : ${tasks}">
+                            <td th:text="${task.id}"></td>
+                            <td th:text="${task.title}"></td>
+                            <td th:text="${task.description}"></td>
+                            <td th:text="${task.created}"></td>
+                            <td th:text="${task.completed}"></td>
+                            <td>
+
+                                <a th:href="@{/tasks/{id}(id=${task.id})}" class="btn btn-success btn-sm" role="button">Bearbeiten</a>
+                                <form th:action="@{/tasks/{id}(id=${task.id})}" th:object="${task}" th:method="delete" style='display:inline;'>
+                                    <button type="submit" class="btn btn-danger btn-sm">Löschen</button>
+                                </form>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+</main>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript">
+		$(document).ready(function(){
+		$('a[href^="#"]').on('click',function (e) {e.preventDefault();
+
+	    var target = this.hash,
+	    $target = $(target);
+
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = target;
+	    });
+	});
+});
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aufgabenverwaltung</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div class="alert alert-success">
+    <div class="container">
+    <strong>Meine Aufgaben</strong>
+    </div>
+
+</div>
+<div class="container">
+
+    <div style="margin-bottom: 5px;">
+        <a th:href="@{/tasks/create}" class="btn btn-success" role="button">+ Aufgabe hinzufügen</a>
+        <a th:href="@{/tasks}" class="btn btn-success btn-sm" role="button">Alle Aufgaben</a>
+        <a th:href="@{/tasks/search?completed=true}" class="btn btn-success btn-sm" role="button">Nur offene Aufgaben</a>
+        <a th:href="@{/tasks/search?completed=false}" class="btn btn-success btn-sm" role="button">Erledigte Aufgaben</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Bechreibung</th>
+            <th>Erstellungsdatum</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.id}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.created}"></td>
+            <td th:text="${task.completed}"></td>
+            <td>
+                <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="btn btn-success btn-sm" role="button">Bearbeiten</a>
+                <form th:action="@{/tasks/{id}(id=${task.id})}" th:object="${task}" th:method="delete" style='display:inline;'>
+                    <button type="submit" class="btn btn-danger btn-sm">Löschen</button>
+                </form>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>-->
+

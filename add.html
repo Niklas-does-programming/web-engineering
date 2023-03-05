@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Princess+Sofia" rel="stylesheet" type="text/css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+
+    <title>Aufgabe hinzufügen</title>
+
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar fixed-top navbar-expand-lg bg-success navbar-dark">
+
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/#start}" >Aufgabenverwaltung</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle Navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#ueber-uns">Über uns</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontakt">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#impressum">Impressum</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/users" th:href="@{/users/signin}">Login</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+
+
+
+
+
+<!-- content -->
+<main id="main">
+
+    <section id="space" class="space-section"></section>
+    <section id="login">
+        <div class="container">
+            <div class="section-title">
+                <h2>Aufgabe hinzufügen</h2>
+                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            </div>
+            <div>
+
+
+
+                <div class="form">
+                    <form th:action="@{/tasks}" method="post" th:object="${task}">
+
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <label for="title" class="col-form-label col-lg-3">Titel</label>
+                                <input type="text" class="u-full-width col-lg-6" th:field="*{title}" id="title" />
+                                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <label for="description" class="col-form-label col-lg-3">Beschreibung</label>
+                                <input type="text" class="u-full-width col-lg-6" th:field="*{description}" id="description" />
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label for="completed" class="col-form-label col-lg-3">Status</label>
+                                <input type="checkbox" name="completed" th:checked="${task.completed}" onchange="form.submit()" id="completed"/>
+                                <span th:if="${#fields.hasErrors('completed')}" th:errors="*{completed}" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+</main>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+<script type="text/javascript">
+		$(document).ready(function(){
+		$('a[href^="#"]').on('click',function (e) {e.preventDefault();
+
+	    var target = this.hash,
+	    $target = $(target);
+
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = target;
+	    });
+	});
+});
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
